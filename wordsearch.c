@@ -130,7 +130,7 @@ void searchPuzzle(char** arr, char* word) {
     // Check for each cell if it can be the start of the word
     for (int i = 0; i < bSize; i++) {
         for (int j = 0; j < bSize; j++) {
-            if (*(*(arr+i)+j) == *(word+i)) { // Check if first letter matches
+            if (*(*(arr+i)+j) == *(word)) { // Check if first letter matches
                 // Call findNeighbor and check if the word is found
                 if (findNeighbor(arr, temp, word, i, j, 1)) {
                     found = 1; // Word found
