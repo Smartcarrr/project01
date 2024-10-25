@@ -70,12 +70,9 @@ void printPuzzle(char** arr) {
 }
 
 void findNeighbor(char** arr, char* word, int i, int j){
-    if(*word == '\0'){
-        printf("Found\n");
-        return;
-    }
     int iMax = i+1, jMax = j+1;
     int iMin = i-1, jMin = j-1;
+    int found = 0;
     if(bSize < iMax){
         iMax = bSize-1;
     }
@@ -89,13 +86,19 @@ void findNeighbor(char** arr, char* word, int i, int j){
         jMin = 0;
     }
     for(int x = iMin; x <= iMax; x++){
-        for(int z = jMin; z <= jMax; z++){
-            printf("%c:%c  ", *word, *(*(arr + x) + z));
-            if(*word == *(*(arr + x) + z)){
-                printf("\n");
-                findNeighbor(arr, word+1, x, z);
+        if(found == 0){
+            for(int z = jMin; z <= jMax; z++){
+                if(*word == *(*(arr + x) + z)){
+                    findNeighbor(arr, word+1, x, z);
+                    if(*(word+1) == '\0'){
+                        printf("found");
+                        found =1;
+                        break;
+                    }
             }
         }
+        }
+        
     }
 }
 
